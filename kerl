@@ -369,9 +369,12 @@ do_build()
     if [ -n "$KERL_USE_AUTOCONF" ]; then
         ./otp_build autoconf $KERL_CONFIGURE_OPTIONS > "$LOGFILE" 2>&1 && \
             ./otp_build configure $KERL_CONFIGURE_OPTIONS > "$LOGFILE" 2>&1
+        make clean
+        ./otp_build configure $KERL_CONFIGURE_OPTIONS > "$LOGFILE" 2>&1
     else
         ./otp_build configure $KERL_CONFIGURE_OPTIONS > "$LOGFILE" 2>&1
-
+        make clean
+        ./otp_build configure $KERL_CONFIGURE_OPTIONS > "$LOGFILE" 2>&1
     fi
     if [ $? -ne 0 ]; then
         echo "Build failed, see $LOGFILE"
